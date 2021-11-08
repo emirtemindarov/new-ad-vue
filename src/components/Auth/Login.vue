@@ -10,9 +10,9 @@
 						<v-form>
 							<v-text-field
 								prepend-icon="mdi-account"
-								name="email" 
-               					label="Email" 
-								type="email" 
+								name="email"
+								label="Email"
+								type="email"
 								v-model="email" >
 							</v-text-field>
 							<v-text-field
@@ -40,15 +40,13 @@
 
 
 <script>
-export default 
-{
-	data () 
-	{ 
-		return 
-		{
+export default {
+	data () {
+		return {
 			email: "",
 			password: ""
-		} 	
+		}
 	}
-} 
+}
 </script>
+
