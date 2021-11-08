@@ -24,13 +24,24 @@
 								v-model="password"
 								:rules="passwordRules">
 							</v-text-field>
-						</v-form> 
+						</v-form>
 					</v-card-text>
 					<v-card-actions>
 						<v-spacer></v-spacer>
-						<v-btn color="primary">
+						<v-btn color="primary" @click="onSubmit" :disabled="!valid">
 							Login
 						</v-btn>
+						methods: {
+							onSubmit(){
+								if (this.$refs.form.validate()) {
+									const user = {
+										email: this.email,
+										password: this.password
+									}
+									console.log(user)
+								}
+							}
+						}
 					</v-card-actions>	
 				</v-card>
 			</v-flex>
