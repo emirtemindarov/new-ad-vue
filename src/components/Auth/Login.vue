@@ -31,17 +31,6 @@
 						<v-btn color="primary" @click="onSubmit" :disabled="!valid">
 							Login
 						</v-btn>
-						methods: {
-							onSubmit(){
-								if (this.$refs.form.validate()) {
-									const user = {
-										email: this.email,
-										password: this.password
-									}
-									console.log(user)
-								}
-							}
-						}
 					</v-card-actions>	
 				</v-card>
 			</v-flex>
@@ -68,8 +57,18 @@ export default {
 			v => (v && v.length >= 6) || 'Password must be more or equel than 6 characters'
 			]
 		} 	
-	}
-
+	},
+	methods: {
+							onSubmit(){
+								if (this.$refs.form.validate()) {
+									const user = {
+										email: this.email,
+										password: this.password
+									}
+									console.log(user)
+								}
+							}
+						}
 }
 </script>
 
