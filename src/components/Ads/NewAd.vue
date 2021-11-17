@@ -74,16 +74,17 @@ export default {
 		}
 	},
 	methods: {
-		createAd() {
+		createAd(){
 			if (this.$refs.form.validate()) {
 				const ad = {
 					title: this.title,
 					desc: this.description,
-					promo: this.promo
+					promo: this.promo,
+					src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
 				}
-				console.log(ad)
+				this.$store.dispatch("createAd", ad)
 			}
 		}
 	}
-} 
+}
 </script>
