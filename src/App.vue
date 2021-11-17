@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-  <v-navigation-drawer app v-model="drawer">                  <!--начало дровера-->
+  <v-navigation-drawer app v-model="drawer">                
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">
@@ -31,7 +31,7 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-  </v-navigation-drawer>                                     <!--конец дровера-->
+  </v-navigation-drawer>                                  
 
 
   <v-app-bar app dark color="primary">
