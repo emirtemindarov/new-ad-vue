@@ -73,6 +73,11 @@ export default {
 			]
 		} 	
 	},
+	computed: {
+	loading() {
+		return this.$store.getters.loading
+	}	
+},
 	methods: {
 		onSubmit() {
 			if (this.$refs.form.validate()) {
