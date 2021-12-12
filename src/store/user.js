@@ -41,12 +41,17 @@ export default {
                 commit('setError', error.message)
         throw error
             }
-        }
-                  
+        },
+        autoLoginUser({commit},uid) {
+            commit('setUser', new User(uid))
+        }    
     },
 	getters: {
         user(state) {
             return state.user
-        }
+        },
+        isUserLoggedIn (state) {
+            return state.user !== null
+        }        
     }
 }   
