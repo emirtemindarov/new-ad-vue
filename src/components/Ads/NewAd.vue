@@ -49,11 +49,13 @@
 
 				<v-layout  row> 
 				<v-flex xs12>
+					<v-spacer></v-spacer>
 					<v-btn 
 					color="success"
-					@click="createAd">
-						Create Ad
-					</v-btn>
+					@click="createAd"
+					:loading="loading"
+					:disabled:="!valid || loading" 
+					>Create Ad</v-btn>
 				</v-flex>
 				</v-layout> 
 
@@ -73,9 +75,14 @@ export default {
 			promo: true
 		}
 	},
+	computed: {
+		loading() {
+			return this.$store.getters.loading
+		}
+	},
 	methods: {
 		createAd(){
-			if (this.$refs.form.validate()) {
+			if (this.$refs.form.validate()){
 				const ad = {
 					title: this.title,
 					desc: this.description,
@@ -83,6 +90,10 @@ export default {
 					src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
 				}
 				this.$store.dispatch("createAd", ad)
+				.then(() => {
+					this.$router.push("/list")
+				})
+				.catch(() => {})
 			}
 		}
 	}
