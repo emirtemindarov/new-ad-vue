@@ -1,12 +1,10 @@
-import store from '../store'
-
-export default function(next) {
-    console.log(store.getters.isUserLoggedIn)
-   if (store.getters.isUserLoggedIn) {
-       next()
-       
-   } else {
-       next('/login?loginError=true')
-       //next('/')
-   }
+import store from '../store' 
+ 
+export default function(to,from,next) { 
+ if (store.getters.isUserLoggedIn) { 
+ next() 
+ } else { 
+ next('/login?loginError=true') 
+ //next('/') 
+ } 
 }

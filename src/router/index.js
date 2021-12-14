@@ -33,7 +33,6 @@ export default new Router({
 		name:"newAd",
 		component: NewAd,
 		beforeEnter: AuthGuard
-	
 	},
 	{
 		path:"/login",
@@ -50,7 +49,6 @@ export default new Router({
 		name: "orders",
 		component: Orders,
 		beforeEnter: AuthGuard
-	
 	}
 	],
 	mode: 'history'
