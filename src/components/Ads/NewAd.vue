@@ -115,7 +115,10 @@ export default {
 			}
 			reader.readAsDataURL(file)
 			this.image = file
-		}
+		},
+		triggerUpload () {
+			this.$refs.fileInput.click()
+		},  
 	}
 }
 </script>
