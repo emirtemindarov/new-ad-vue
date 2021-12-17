@@ -61,7 +61,7 @@
 					color="success"
 					@click="createAd"
 					:loading="loading"
-					:disabled:="!valid || !image  || loading" 
+					:disabled:="!valid || !image || loading" 
 					>Create Ad</v-btn>
 				</v-flex>
 				</v-layout> 
@@ -96,7 +96,7 @@ export default {
 					title: this.title,
 					desc: this.description,
 					promo: this.promo,
-					src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
+					image: this.image
 				}
 				this.$store.dispatch("createAd", ad)
 				.then(() => {
@@ -110,6 +110,7 @@ export default {
 
 			const reader = new FileReader()
 			reader.onload = e => {
+				console.log(e)
 				this.imageSrc = reader.result
 			}
 			reader.readAsDataURL(file)
