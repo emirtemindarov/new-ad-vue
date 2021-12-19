@@ -2,7 +2,7 @@
 	<v-container>
 		<v-layout row> 
 			<v-flex xs12>
-				<v-card class="mt-5">
+				<v-card class="mt-5" v-if="!loading">
 					<v-img
 					height="300px"
 					:src="ad.src">
@@ -17,6 +17,20 @@
 						<v-btn class="success">Buy</v-btn>
 					</v-card-actions>	
 				</v-card>
+				<div v-else>
+					<v-container>
+						<v-layout row>
+							<v-flex xs12 sm2 offset-sm6 class="mt-5">
+								<v-progress-circular 
+								:size="70"
+								:width="7"
+								color="primary"
+								indeterminate
+								></v-progress-circular>
+							</v-flex>
+						</v-layout>
+					</v-container>
+				</div>
 			</v-flex>
 		</v-layout> 
 	</v-container>
@@ -33,6 +47,9 @@ export default {
 		ad() {
 			const id = this.id
 			return this.$store.getters.adById(id)
+		},
+		loading () {
+			return this.$store.getters.loading
 		}
 	},
 	components: {
