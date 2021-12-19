@@ -44,10 +44,12 @@ export default {
 				)
 				const fbValue = await fb.database().ref('ads').push(newAd)
 				const imageExt = image.name.slice(image.name.lastIndexOf("."))
+				
 				await fb.storage().ref().child(`ads/${fbValue.key}.${imageExt}`).put(image).then(snapshot => {
 					snapshot.ref.getDownloadURL().then((downloadURL) => {
 						const src = downloadURL
 						fb.database().ref("ads").child(fbValue.key).update({ src })	
+						
 						commit('setLoading', false)
 						commit('createAd', {
 							...newAd,
@@ -66,9 +68,11 @@ export default {
 			commit('clearError')
 			commit('setLoading', true)
 			try {
+				
 				const fbVal = await fb.database().ref('ads').once('value')
 				const ads = fbVal.val()
 				console.log(ads)
+
 				const resultAds = []
 				Object.keys(ads).forEach(key => {
 					const ad = ads[key]
