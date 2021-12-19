@@ -39,7 +39,7 @@
 
 
 <script>
-import EditAdModal from './EditAdModal'
+import EditAdModal from '../../EditAdModal.vue'
 
 export default {
 	props: ['id'],
