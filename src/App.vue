@@ -96,6 +96,15 @@ export default {
       drawer: false
     }
   },
+  methods: {
+    closeError () {
+      this.$store.dispatch('clearError')
+    },
+    onLogout () {
+      this.$store.dispatch('logoutUser')
+      this.$router.push("/")
+    }
+  },
   computed: {
     error () {
       return this.$store.getters.error
@@ -117,18 +126,7 @@ export default {
         ]
       }
     }
-  },
-  methods: {
-    closeError () {
-      this.$store.dispatch('clearError')
-    },
-    onLogout () {
-      this.$store.dispatch('logoutUser')
-      this.$router.push("/")
-    }
-
- }
-
+  }
 }
 </script>
 

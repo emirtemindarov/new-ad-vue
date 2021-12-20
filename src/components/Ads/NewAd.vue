@@ -90,6 +90,9 @@ export default {
 		}
 	},
 	methods: {
+		triggerUpload () {
+			this.$refs.fileInput.click()
+		},
 		createAd(){
 			if (this.$refs.form.validate() && this.image){
 				const ad = {
@@ -115,10 +118,7 @@ export default {
 			}
 			reader.readAsDataURL(file)
 			this.image = file
-		},
-		triggerUpload () {
-			this.$refs.fileInput.click()
-		},  
+		}
 	}
 }
 </script>

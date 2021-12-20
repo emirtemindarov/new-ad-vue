@@ -39,7 +39,7 @@
 
 
 <script>
-import EditAdModal from '../../EditAdModal.vue'
+import EditAdModal from './EditAdModal.vue'
 
 export default {
 	props: ['id'],
@@ -50,6 +50,9 @@ export default {
 		},
 		loading () {
 			return this.$store.getters.loading
+		},
+		isOwner () {
+			return this.ad.ownerId === this.$store.getters.user.id
 		}
 	},
 	components: {

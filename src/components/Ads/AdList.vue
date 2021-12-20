@@ -54,14 +54,9 @@
 
 <script>
 export default {
-	isOwner () {
-		return this.ad.ownerId === this.$store.getters.user.id
-	},
 	computed: {
-		myAds(state, getters) {
-			return state.ads.filter(ad => {
-				return ad.ownerId == getters.user.id
-			})
+		myAds(){
+			return this.$store.getters.myAds
 		},
 		loading () {
 			return this.$store.getters.loading
