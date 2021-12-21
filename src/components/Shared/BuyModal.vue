@@ -41,8 +41,8 @@
               <v-flex xs>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn text @click="onCancel">Close</v-btn>
-                  <v-btn color="success" @click="onSave">Buy it!</v-btn>
+                  <v-btn text @click="onCancel" :disabled="localLoading">Close</v-btn>
+                  <v-btn color="success" @click="onSave" :disabled="localLoading" :loading="localLoading">Buy it!</v-btn>
                 </v-card-actions>
                 </v-flex>
             </v-layout>
@@ -60,30 +60,32 @@
       return {
         modal: false,
         name: "",
-		phone: ""
+        phone: "",
+        localLoading: false
       }
     },
     methods: {
       onCancel (){
         this.name = ""
-		this.phone = ""
+        this.phone = ""
         this.modal = false
       },
       onSave (){
         if (this.name !== '' && this.phone !== '') {
-			this.$store.dispatch('createOrder', {
-                name: this.name,
-				phone: this.phone,
-				adId: this.ad.id,
-				ownerId: this.ad.ownerId
-			})
-			.finally(() => {
-				this.localLoading = false
-				this.name = ""
-				this.phone = ""
-				this.modal = false
-			})
-		}
+          this.localLoading = true
+          this.$store.dispatch('createOrder', {
+            name: this.name,
+            phone: this.phone,
+            adId: this.ad.id,
+            ownerId: this.ad.ownerId
+          })
+          .finally(() => {
+            this.localLoading = false
+            this.name = ""
+            this.phone = ""
+            this.modal = false
+          })
+        }
       }
     }
   }
