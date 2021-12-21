@@ -57,6 +57,19 @@ export default {
                 commit('setLoaging',false)
                 throw error
             }
+        },
+        async markOrderDone({commit,getters},payload) {
+            commit('clearError')
+            
+            try {
+            await fb.database().ref(`/users/${getters.user.id}/orders`).child(payload).update({
+                            done: true
+                        })
+        
+            } catch (error) {
+                commit('setError', error.message)
+                throw error
+            }
         }
     },        
 	getters: {

@@ -69,9 +69,12 @@ export default {
 	},
 	methods: {
 		markDone(order) {
-			order.done = !order.done
-			console.log(order.done)
-		},
+			this.$store.dispatch('markOrderDone', order.id)
+			.then(() => {
+				order.done = true
+			})
+			.catch(() => {})
+		}
 	},
 	computed: {
 		loading () {
