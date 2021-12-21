@@ -12,6 +12,7 @@ class Order {
 
 export default {
 	state: {},
+    
 	mutations: {
         loadOrders (state, payload) {
         state.orders = payload
