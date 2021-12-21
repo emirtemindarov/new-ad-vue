@@ -7,6 +7,9 @@ import store from './store'
 import fb from 'firebase'
 import BuyModalComponent from '@/components/Shared/BuyModal.vue'
 
+//import { initializeApp } from "firebase/app";
+//import { getAnalytics } from "firebase/analytics";
+
 Vue.use(Router)
 Vue.component('app-vue-modal',BuyModalComponent)
 Vue.config.productionTip = false
@@ -35,6 +38,10 @@ new Vue({
         this.$store.dispatch('autoLoginUser', user.uid)
       }
    })  
-   this.$store.dispatch('fetchAds')
+
+//const app = initializeApp(firebaseConfig);
+//getAnalytics(app);
+   
+    this.$store.dispatch('fetchAds')
   }
 }).$mount('#app')
