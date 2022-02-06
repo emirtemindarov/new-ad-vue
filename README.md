@@ -1,4 +1,4 @@
-# new-ad-vue
+# new-ad-vue (Учебный проект)
 
 ## Project setup
 ```
