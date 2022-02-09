@@ -1,4 +1,4 @@
-# new-ad-vue (Учебный проект по Vue.js и Firebase)
+# ad-pro
 
 ## Project setup
 ```

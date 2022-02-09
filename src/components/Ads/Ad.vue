@@ -4,9 +4,9 @@
 			<v-flex xs12>
 				<v-card class="mt-5" v-if="!loading">
 					<v-img
-					height="300px"
-					:src="ad.src">
-					</v-img>
+						height="300px"
+						:src="ad.src"	
+					></v-img>
 					<v-card-text>
 						<h1 class="text--primary mb-3">{{ ad.title }}</h1>
 						<p>{{ ad.desc }}</p>
@@ -22,10 +22,10 @@
 						<v-layout row>
 							<v-flex xs12 sm2 offset-sm6 class="mt-5">
 								<v-progress-circular 
-								:size="70"
-								:width="7"
-								color="primary"
-								indeterminate
+									:size="70"
+									:width="7"
+									color="primary"
+									indeterminate
 								></v-progress-circular>
 							</v-flex>
 						</v-layout>
@@ -36,11 +36,8 @@
 	</v-container>
 </template>
 
-
-
 <script>
-import EditAdModal from './EditAdModal.vue'
-
+import EditAdModal from './EditAdModal'
 export default {
 	props: ['id'],
 	computed: {

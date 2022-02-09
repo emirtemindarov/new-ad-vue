@@ -1,21 +1,22 @@
 import fb from 'firebase'
-    
+
 class User {
-    constructor(id) {
-        this.id = id
-    }
+	constructor(id) {
+		this.id = id
+	}
 }
 
+
 export default {
-    state: {
+	state: {
         user: null
-    },   
+    },
 	mutations: {
         setUser(state,payload) {
             state.user = payload
         }
     },
-    actions: {
+	actions: {
         async registerUser({commit},{email, password}){
             commit('clearError')
             commit('setLoading', true)
@@ -42,20 +43,22 @@ export default {
         throw error
             }
         },
-        autoLoginUser({commit},uid) {
-            commit('setUser', new User(uid))
-        },    
         logoutUser ({commit}) {
             fb.auth().signOut()
                 commit('setUser', null)
-        }            
+        },
+        autoLoginUser({commit},uid){
+            commit('setUser', new User(uid))
+        }
+                    
     },
 	getters: {
-        user(state) {
+        user(state){
             return state.user
         },
         isUserLoggedIn (state) {
             return state.user !== null
         }        
     }
-}   
+        
+}

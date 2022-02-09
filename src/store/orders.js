@@ -10,58 +10,67 @@ class Order {
 	}
 }
 
+
 export default {
-	state: {},
-    
+	state: {
+        orders:[]
+    },
 	mutations: {
         loadOrders (state, payload) {
         state.orders = payload
         }
-    },    
+    },
+    
 	actions: {
+        /*//async createOrder({commit},{name, phone, adId, ownerId}) {
+            async createOrder() {
+            await new Promise((resolve, ) => {
+                setTimeout(() => {
+                    resolve()
+                }, 4000)
+            })
+            }*/
         async createOrder({commit},{name, phone, adId, ownerId}) {
-			const order = new Order(name,phone,adId)
-			commit('clearError')
-			try {
-				await fb.database().ref(`/users/${ownerId}/orders`).push(order)
-
-			} catch (error){
-				commit('setError', error.message)
-				throw error
-			}
-		},
+                const order = new Order(name,phone,adId)
+                commit('clearError')
+                try {
+                    await fb.database().ref(`/users/${ownerId}/orders`).push(order)    
+                } catch (error){
+                    commit('setError', error.message)
+                    throw error
+                }
+        },
         async fetchOrders ({commit, getters}) {
-            commit('setLoaging', true)
+            commit('setLoading', true)
             commit('clearError') 
             const resultOrders = []
             try {
-                const fbVal = await fb.database().ref(`/users/${getters.user.id}/orders`).once('value')
+                    const fbVal = await fb.database().ref(`/users/${getters.user.id}/orders`).once('value')
                 const orders = fbVal.val()
                 if (orders !== null) {
-                    Object.keys(orders).forEach(key => {
-                        const order = orders[key]
-                        resultOrders.push(
-                            new Order(
-                                order.name,
-                                order.phone,
-                                order.adId,
-                                order.done,
-                                key
-                            )
-                        )
-                    })
+                Object.keys(orders).forEach(key => {
+                  const order = orders[key]
+                  resultOrders.push(
+                    new Order(
+                      order.name,
+                      order.phone,
+                      order.adId,
+                      order.done,
+                      key
+                    )
+                  )
+                })
                 }
                 commit('loadOrders', resultOrders)
-                commit('setLoaging', false)
+                commit('setLoading', false)
             } catch(error) {
-                commit('setError', error.message)
-                commit('setLoaging',false)
-                throw error
+            commit('setError', error.message)
+            commit('setLoading',false)
+            throw error
             }
         },
         async markOrderDone({commit,getters},payload) {
             commit('clearError')
-
             try {
             await fb.database().ref(`/users/${getters.user.id}/orders`).child(payload).update({
                             done: true
@@ -71,8 +80,9 @@ export default {
                 commit('setError', error.message)
                 throw error
             }
-        }
-    },        
+        }        
+    },
+        
 	getters: {
         doneOrders (state) {
             return state.orders.filter(order => order.done)
@@ -83,5 +93,6 @@ export default {
         orders (state, getters) {	
             return getters.undoneOrders.concat(getters.doneOrders)
         }
-    }    
+    }
+    
 }

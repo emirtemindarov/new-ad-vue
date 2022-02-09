@@ -23,14 +23,14 @@ export default {
 		},
 		clearError ({commit}) {
 			commit('clearError')
-		}
+		},
 	},
 	getters: {
 		loading (state) {
-            return state.loading
+			return state.loading
 		},
 		error (state) {
-            return state.error
+			return state.error
 		}
 	}
 }
